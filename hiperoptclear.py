@@ -44,7 +44,7 @@ def save(ids,score,prediction):
     
     print("score: ",score)
 
-    print result.head()
+    print (result.head())
     now = datetime.now()
 
     name=str(now.strftime("%d-%m-%y_%H-%M"))+"_"+str(score)
@@ -54,8 +54,8 @@ def save(ids,score,prediction):
     result.to_csv('./ext/sub'+name+'.csv', index=False)
 
 def score(params):
-    print "Training with params : "
-    print params
+    print ("Training with params : ")
+    print (params)
     num_round = int(params['n_estimators'])
     params['max_depth']=int(params['max_depth'])
     del params['n_estimators']
@@ -72,7 +72,7 @@ def score(params):
     score_tmp[score_tmp['score']<=0] = 0.0000001
     predictions=score_tmp[['score']].values
     score = log_loss(y_test, predictions)
-    print "\tScore {0}\n\n".format(score)
+    print ("\tScore {0}\n\n".format(score))
     params['n_estimators'] = num_round
     params['score'] = score
     
@@ -103,7 +103,7 @@ def optimize(trials):
     
 if __name__ == "__main__":
     optim = []
-    print "create dict table"
+    
     log=['attemptsOnTheHighestLevel','totalNumOfAttempts']
     log1 = ['maxPlayerLevel' ,'totalScore','totalBonusScore','totalStarsCount']
     COMB_FEATURE = [u'maxPlayerLevel', u'numberOfAttemptedLevels',
@@ -202,4 +202,4 @@ if __name__ == "__main__":
     optimize(trials)
     
     pd.DataFrame(optim).to_csv('clear.csv')
-    print sorted(optim, key=sortByEl, reverse=True)[:-10]
+    print (sorted(optim, key=sortByEl, reverse=True)[:-10])
