@@ -99,7 +99,7 @@ def optimize(trials):
 
     best = fmin(score, space, algo=tpe.suggest, trials=trials, max_evals=400)
 
-    print best
+    print (best)
     
 if __name__ == "__main__":
     optim = []
